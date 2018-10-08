@@ -17,7 +17,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
@@ -29,8 +29,15 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
-db.sync();
+const syncDB = async () => {
+  try {
+    await db.sync();
+    app.listen(4000, () => {
+      console.log('server running on port 4000');
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-app.listen(4000, () => {
-  console.log('server running on port 4000');
-});
+syncDB();
