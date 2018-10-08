@@ -4,8 +4,10 @@
   "description": "Simple GraphQL server",
   "main": "server.js",
   "scripts": {
+    "build-client-watch": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "nodemon server.js"
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start-server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,11 @@
   },
   "homepage": "https://github.com/catncradle/graphql-express-server#readme",
   "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^14.0.2",
