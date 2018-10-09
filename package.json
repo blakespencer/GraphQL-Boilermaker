@@ -4,8 +4,10 @@
   "description": "Simple GraphQL server",
   "main": "server.js",
   "scripts": {
+    "build-client-watch": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "nodemon server.js"
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start-server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,14 +20,33 @@
   },
   "homepage": "https://github.com/catncradle/graphql-express-server#readme",
   "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^14.0.2",
     "graphql-relay": "^0.5.5",
     "graphql-sequelize": "^9.0.1",
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.4",
+    "path": "^0.12.7",
     "pg": "^7.5.0",
     "pg-hstore": "^2.3.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "sequelize": "^4.39.0"
+  },
+  "devDependencies": {
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.23.1"
   }
 }
